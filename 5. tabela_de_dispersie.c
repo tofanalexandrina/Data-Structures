@@ -87,6 +87,30 @@ void dezalocareHashT(hashT tabela) {
 	free(tabela.vector);
 }
 
+//Sa se determine media mediilor pentru studentii cu varstele cuprinse intre 21 si 23 de ani
+void calculMediaMediilor(hashT tabela) {
+	int count = 0;
+	float sumaMedii = 0.0;
+
+	for (int i = 0;i < tabela.nrElem;i++) {
+		nodLS* temp = tabela.vector[i];
+		while (temp) {
+			if (temp->info.varsta >= 21 && temp->info.varsta <= 23) {
+				sumaMedii += temp->info.medie;
+				count++;
+			}
+			temp = temp->next;
+		}
+	}
+
+	if (count > 0) {
+		printf("\nMedia mediilor studentilor cu varsta cuprinsa intre 21 si 23 ani: %5.2f\n", sumaMedii / count);
+	}
+	else {
+		printf("\nNu exista studenti cu varsta intre 21 si 23 ani.\n");
+	}
+}
+
 void main() {
 	hashT tabela;
 	tabela.nrElem = 23;
@@ -113,5 +137,6 @@ void main() {
 
 	printf("\n------------Tabela De Dispersie------------\n");
 	traversareHashT(tabela);
+	calculMediaMediilor(tabela);
 	dezalocareHashT(tabela);
 }
