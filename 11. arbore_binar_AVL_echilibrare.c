@@ -159,21 +159,21 @@ nodArbore* reechilibrare(nodArbore* radacina) {
 	calculBF(radacina);
 	nodArbore* stanga = radacina->stanga;
 	nodArbore* dreapta = radacina->dreapta;
-	if (radacina->BF == -2 && stanga->BF == -1) {
+	if (radacina->BF <= -2 && stanga->BF <= -1) {
 		radacina = rotatieDreapta(radacina);
 		calculBF(radacina);
 	}
 	else {
-		if (radacina->BF == 2 && dreapta->BF == 1) {
+		if (radacina->BF >= 2 && dreapta->BF >= 1) {
 			radacina = rotatieStanga(radacina);
 			calculBF(radacina);
 		}
 		else {
-			if (radacina->BF == 2 && dreapta->BF == -1) {
+			if (radacina->BF >= 2 && dreapta->BF <= -1) {
 				radacina = rotatieDreaptaStanga(radacina);
 				calculBF(radacina);
 			}
-			else if (radacina->BF == -2 && stanga->BF == 1) {
+			else if (radacina->BF <= -2 && stanga->BF >= 1) {
 				radacina = rotatieStangaDreapta(radacina);
 				calculBF(radacina);
 			}
